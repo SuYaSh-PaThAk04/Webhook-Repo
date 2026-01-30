@@ -34,8 +34,6 @@ def webhook():
         return jsonify({"error": "Invalid signature"}), 401
 
     payload = request.json
-
-    # ---------------- PUSH ----------------
     if github_event == "push":
         author = payload["pusher"]["name"]
         to_branch = payload["ref"].split("/")[-1]
@@ -53,7 +51,7 @@ def webhook():
         })
         return {"status": "push stored"}
 
-    # ---------------- PR + MERGE ----------------
+   
     if github_event == "pull_request":
         action = payload.get("action")
         pr = payload["pull_request"]
@@ -62,7 +60,7 @@ def webhook():
         from_branch = pr["head"]["ref"]
         to_branch = pr["base"]["ref"]
 
-        # MERGE detection:
+
         if action == "closed" and pr.get("merged") is True:
             merged_at = pr["merged_at"]
             message = f'{author} merged branch "{from_branch}" to "{to_branch}" on {format_timestamp(merged_at)}'
@@ -77,7 +75,7 @@ def webhook():
             })
             return {"status": "merge stored"}
 
-        # PR submitted
+        
         if action in ["opened", "reopened"]:
             created_at = pr["created_at"]
             message = f'{author} submitted a pull request from "{from_branch}" to "{to_branch}" on {format_timestamp(created_at)}'

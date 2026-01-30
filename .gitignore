@@ -1,14 +1,9 @@
-# -------------------------
-# Secrets / env files
-# -------------------------
+
 **/.env
 **/.env.*
 !.env.example
 !.env.local.example
 
-# -------------------------
-# Python (Flask server)
-# -------------------------
 __pycache__/
 *.py[cod]
 *.pyo
@@ -23,9 +18,7 @@ pip-wheel-metadata/
 .pytest_cache/
 .mypy_cache/
 
-# -------------------------
-# Node / Next.js (client)
-# -------------------------
+
 node_modules/
 .next/
 out/
