@@ -4,7 +4,6 @@ from datetime import datetime, timezone
 
 
 def format_timestamp(ts: str) -> str:
-    """Format ISO timestamp to human-readable string (e.g. '30th January 2025 - 02:30 PM UTC')."""
     dt = datetime.fromisoformat(ts.replace("Z", "+00:00")).astimezone(timezone.utc)
     day = dt.day
     suffix = "th"

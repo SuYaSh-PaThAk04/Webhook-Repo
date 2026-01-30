@@ -11,7 +11,6 @@ load_dotenv(_env_path)
 
 
 class Settings:
-    """Application settings from environment variables."""
 
     # Server
     FLASK_ENV: str = os.getenv("FLASK_ENV", "production")

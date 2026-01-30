@@ -11,7 +11,6 @@ webhook_bp = Blueprint("webhook", __name__)
 
 @webhook_bp.post("/webhook")
 def webhook():
-    """Handle GitHub webhook delivery (push, pull_request)."""
     signature = request.headers.get("X-Hub-Signature-256")
     raw_body = request.data
 

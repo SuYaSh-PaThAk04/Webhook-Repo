@@ -5,7 +5,6 @@ import hashlib
 
 
 def verify_signature(secret: str, payload: bytes, signature_header: str | None) -> bool:
-    """Verify GitHub webhook X-Hub-Signature-256 (sha256=...)."""
     if not secret:
         return True
     if not signature_header:

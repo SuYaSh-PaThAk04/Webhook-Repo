@@ -11,7 +11,6 @@ _client: MongoClient | None = None
 
 
 def _get_client() -> MongoClient:
-    """Lazy-initialize and return MongoDB client (singleton)."""
     global _client
     if _client is None:
         _client = MongoClient(
@@ -22,10 +21,8 @@ def _get_client() -> MongoClient:
 
 
 def get_db() -> Database:
-    """Return the application database."""
     return _get_client()[settings.DB_NAME]
 
 
 def get_collection() -> Collection:
-    """Return the events collection."""
     return get_db()[settings.EVENTS_COLLECTION]

@@ -10,7 +10,6 @@ events_bp = Blueprint("events", __name__)
 
 @events_bp.get("/events")
 def get_events():
-    """List recent GitHub events (query: limit)."""
     try:
         limit = int(request.args.get("limit", settings.EVENTS_DEFAULT_LIMIT))
     except (TypeError, ValueError):

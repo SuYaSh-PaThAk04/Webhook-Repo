@@ -5,10 +5,8 @@ from services.events_service import events_service
 
 
 class WebhookService:
-    """Process GitHub webhook events and persist them."""
 
     def process_push(self, payload: dict) -> dict:
-        """Process push event; return status dict."""
         author = payload["pusher"]["name"]
         to_branch = payload["ref"].split("/")[-1]
         timestamp = payload["head_commit"]["timestamp"]
@@ -24,7 +22,6 @@ class WebhookService:
         return {"status": "push stored"}, 200
 
     def process_pull_request(self, payload: dict) -> tuple[dict, int]:
-        """Process pull_request event; return (response_dict, http_status)."""
         action = payload.get("action")
         pr = payload["pull_request"]
         author = pr["user"]["login"]
@@ -60,7 +57,6 @@ class WebhookService:
         return {"status": f"ignored pull_request action {action}"}, 200
 
     def handle_event(self, event_type: str, payload: dict) -> tuple[dict, int]:
-        """Route event by type; return (response_dict, http_status)."""
         if event_type == "push":
             return self.process_push(payload)
         if event_type == "pull_request":
