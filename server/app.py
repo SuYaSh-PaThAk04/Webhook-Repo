@@ -19,6 +19,10 @@ SECRET = os.getenv("GITHUB_WEBHOOK_SECRET", "")
 def health():
     return {"status": "ok"}
 
+@app.get("/")
+def home():
+    return {"status": "running"}
+
 
 @app.post("/webhook")
 def webhook():
